@@ -54,6 +54,8 @@ class Pipe:
     def __init__(self,canvas,x,y,x1,y1):
         self.canvas = canvas
         self.id = canvas.create_rectangle(x, y,x1,y1, fill = "green")
+    def move(self):
+        canvas.move(self.id, -1 ,0)
 
 
 #test
@@ -66,6 +68,8 @@ while True:
     if bird.hit_bottom == False:
         bird.y = bird.y + 0.2
         bird.fall()
+        pipe1.move()
+        pipe2.move()
     root.update_idletasks()
     root.update()
     time.sleep(0.01)
