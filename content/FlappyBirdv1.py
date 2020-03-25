@@ -25,12 +25,24 @@ class Bird:
         self.coord = canvas.coords(self.id)
         self.y = 1 #speed is 3 down
         self.canvas.bind_all("<Key-Up>", self.up)  # bind up moving function with up key
+        self.hit_bottom = False
 
     def fall(self):
         canvas.move(self.id, 0 ,self.y)
+        pos = self.canvas.coords(
+            self.id)  # this returns the coordinate[x1, y1, x2, y2] of "self id" and store it in a variable
+        if pos[1] >= 590:
+            self.hit_bottom = True  # if ball hits x=0, hit bottom is now true, note that self hit bottom can be used here
+            canvas.create_text(250, 250, text="Game over", font="Times, 30") #simply creates text, no association with class
 
     def up(self, event):
         self.y = -6
+
+    def hit_bottom(self):
+        pos = canvas.coords(self.id)
+        print(pos)
+        if pos[1] >= 0:
+            return True
 
 
 
@@ -51,9 +63,9 @@ pipe2 = Pipe(canvas,360,190,290,0)
 
 
 while True:
-    bird.y = bird.y + 0.2
-    print(bird.y)
-    bird.fall()
+    if bird.hit_bottom == False:
+        bird.y = bird.y + 0.2
+        bird.fall()
     root.update_idletasks()
     root.update()
     time.sleep(0.01)
