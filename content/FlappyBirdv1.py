@@ -29,12 +29,14 @@ class Bird:
 
     def fall(self):
         canvas.move(self.id, 0 ,self.y)
-        pos = self.canvas.coords(
+        self.pos = self.canvas.coords(
             self.id)  # this returns the coordinate[x1, y1, x2, y2] of "self id" and store it in a variable
-        if pos[1] >= 590:
+        if self.pos[1] >= 590:
             self.hit_bottom = True  # if ball hits x=0, hit bottom is now true, note that self hit bottom can be used here
             canvas.create_text(250, 250, text="Game over", font="Times, 30")#simply creates text, no association with class
-        return pos
+
+    def position(self):
+        return self.fall()
 
     def up(self, event):
         self.y = -6
@@ -57,9 +59,9 @@ class Pipe:
         self.id = canvas.create_rectangle(x, y,x1,y1, fill = "green")
     def move(self):
         canvas.move(self.id, -1 ,0)
-        pos = self.canvas.coords(
+        self.pos = self.canvas.coords(
             self.id)
-        return pos
+
 
 def create_pipes():
     pass
@@ -79,6 +81,12 @@ while True:
         bird.fall()
         pipe1.move()
         pipe2.move()
+        if bird.pos[0] == pipe1.pos[0]:
+            score += 1
+
+
+
+
 
     root.update_idletasks()
     root.update()
@@ -86,4 +94,4 @@ while True:
 
 root.mainloop()
 
-#-------------------------------
+
