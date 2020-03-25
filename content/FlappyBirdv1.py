@@ -57,15 +57,20 @@ class Pipe:
     def move(self):
         canvas.move(self.id, -1 ,0)
 
+def create_pipes():
+    pass
+
 
 #test
 bird = Bird(canvas)
-pipe1 = Pipe(canvas,360,640,290,340)
-pipe2 = Pipe(canvas,360,190,290,0)
+pipe1 = Pipe(canvas, 360, 640, 290, 340)
+pipe2 = Pipe(canvas, 360, 190, 290, 0)
 
 
 while True:
+
     if bird.hit_bottom == False:
+
         bird.y = bird.y + 0.2
         bird.fall()
         pipe1.move()
