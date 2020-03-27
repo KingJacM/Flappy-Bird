@@ -21,7 +21,7 @@ game_background = canvas.create_image(180, 320, image = photo_image, anchor = 'c
 class Bird:
     def __init__(self, canvas):
         self.canvas = canvas
-        self.id = canvas.create_oval(165, 305, 205, 345, fill = "yellow")
+        self.id = canvas.create_oval(165, 305, 205, 345, fill = "yellow",outline="orange")
         self.coord = canvas.coords(self.id)
         self.y = 1 #speed is 3 down
         self.canvas.bind_all("<Key-Up>", self.up)  # bind up moving function with up key
@@ -39,7 +39,7 @@ class Bird:
         return self.fall()
 
     def up(self, event):
-        self.y = -6
+        self.y = -5
 
     def hit_bottom(self):
         pos = canvas.coords(self.id)
@@ -56,21 +56,32 @@ class Bird:
 class Pipe:
     def __init__(self,canvas,x,y,x1,y1):
         self.canvas = canvas
-        self.id = canvas.create_rectangle(x, y,x1,y1, fill = "green")
+        self.id = canvas.create_rectangle(x, y,x1,y1, fill = "green",outline="green")
+        self.pos = self.pos = self.canvas.coords(
+            self.id)
     def move(self):
-        canvas.move(self.id, -1 ,0)
+        canvas.move(self.id, -2 ,0)
         self.pos = self.canvas.coords(
             self.id)
 
 
 def create_pipes():
     pass
-
+#
+# def check_overlap():
+#     global pipe1, pipe2, bird
+#     x1, y1, x2, y2 = pipe1.pos
+#     x3,y3,x4,y4 = pipe2.pos
+#     result = canvas.find_overlapping(x1, y1, x2, y2)
+#     result2 = canvas.find_overlapping(x3, y3, x4, y4)
+#     print(result)
 
 #test
 bird = Bird(canvas)
 pipe1 = Pipe(canvas, 360, 640, 290, 340)
 pipe2 = Pipe(canvas, 360, 190, 290, 0)
+x1= 360+70
+x2 = 290+70
 
 score = 0
 while True:
@@ -81,8 +92,36 @@ while True:
         bird.fall()
         pipe1.move()
         pipe2.move()
-        if bird.pos[0] == pipe1.pos[0]:
+        if  pipe1.pos[0] == -70:
+            y1 = random.randrange(100,400)
+            y2 = y1+150
             score += 1
+            pipe1 = Pipe(canvas, x1, 640, x2, y2)
+            pipe2 = Pipe(canvas, x1, y1,x2, 0)
+
+        # x_range1 = int(pipe1.pos[0])
+        # x_range2 = int(pipe1.pos[3])
+        # y_range1 = int(pipe1.pos[1])
+        # y_range2 = int(pipe1.pos[3])
+        # y_range3 = int(pipe2.pos[1])
+        # y_range4 = int(pipe2.pos[3])
+        #
+        # if bird.pos[1] or bird.pos[3] <= y_range1 or bird.pos[1] or bird.pos[3] >= y_range2:
+        #     if bird.pos[0] in range(x_range1, x_range2):
+        #         bird.hit_bottom = True
+        # elif bird.pos[1] or bird.pos[3] <= y_range3 or bird.pos[1] or bird.pos[3] >= y_range4:
+        #     if bird.pos[2] in range(x_range1, x_range2):
+        #
+        #         bird.hit_bottom = True
+
+        print(pipe1.pos,pipe2.pos,bird.pos)
+        # check_overlap()
+
+        # check_overlap()
+
+
+
+
 
 
 
