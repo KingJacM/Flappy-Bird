@@ -98,24 +98,20 @@ while True:
             score += 1
             pipe1 = Pipe(canvas, x1, 640, x2, y2)
             pipe2 = Pipe(canvas, x1, y1,x2, 0)
+        # x = pipe1.pos[0]
+        # y = pipe1.pos[1]
+        # x1 = pipe1.pos[2]
+        # y1 = pipe1.pos[3]
+        # x2 = pipe2.pos[0]
+        # y2 = pipe2.pos[1]
+        # x3 = pipe2.pos[2]
+        # y3 = pipe2.pos[3]
+        # print(x,y,x1,y1)
 
-        # x_range1 = int(pipe1.pos[0])
-        # x_range2 = int(pipe1.pos[3])
-        # y_range1 = int(pipe1.pos[1])
-        # y_range2 = int(pipe1.pos[3])
-        # y_range3 = int(pipe2.pos[1])
-        # y_range4 = int(pipe2.pos[3])
-        #
-        # if bird.pos[1] or bird.pos[3] <= y_range1 or bird.pos[1] or bird.pos[3] >= y_range2:
-        #     if bird.pos[0] in range(x_range1, x_range2):
-        #         bird.hit_bottom = True
-        # elif bird.pos[1] or bird.pos[3] <= y_range3 or bird.pos[1] or bird.pos[3] >= y_range4:
-        #     if bird.pos[2] in range(x_range1, x_range2):
-        #
-        #         bird.hit_bottom = True
 
-        print(pipe1.pos,pipe2.pos,bird.pos)
-        # check_overlap()
+
+
+
 
         # check_overlap()
 
