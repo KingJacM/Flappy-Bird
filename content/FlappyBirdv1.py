@@ -84,7 +84,7 @@ x1= 360+70
 x2 = 290+70
 
 score = 0
-
+#main loop
 while bird.hit_bottom == False:
      bird.y = bird.y + 0.2
      bird.fall()
