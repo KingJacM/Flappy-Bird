@@ -84,48 +84,24 @@ x1= 360+70
 x2 = 290+70
 
 score = 0
-while True:
 
-    if bird.hit_bottom == False:
+while bird.hit_bottom == False:
+     bird.y = bird.y + 0.2
+     bird.fall()
+     pipe1.move()
+     pipe2.move()
+     if  pipe1.pos[0] == -70:
+        y1 = random.randrange(100,400)
+        y2 = y1+150
+        score += 1
+        pipe1 = Pipe(canvas, x1, 640, x2, y2)
+        pipe2 = Pipe(canvas, x1, y1,x2, 0)
 
-        bird.y = bird.y + 0.2
-        bird.fall()
-        pipe1.move()
-        pipe2.move()
-        if  pipe1.pos[0] == -70:
-            y1 = random.randrange(100,400)
-            y2 = y1+150
-            score += 1
-            pipe1 = Pipe(canvas, x1, 640, x2, y2)
-            pipe2 = Pipe(canvas, x1, y1,x2, 0)
-        # x = pipe1.pos[0]
-        # y = pipe1.pos[1]
-        # x1 = pipe1.pos[2]
-        # y1 = pipe1.pos[3]
-        # x2 = pipe2.pos[0]
-        # y2 = pipe2.pos[1]
-        # x3 = pipe2.pos[2]
-        # y3 = pipe2.pos[3]
-        # print(x,y,x1,y1)
+     root.update_idletasks()
+     root.update()
+     time.sleep(0.01)
 
 
-
-
-
-
-        # check_overlap()
-
-
-
-
-
-
-
-
-
-    root.update_idletasks()
-    root.update()
-    time.sleep(0.01)
 
 root.mainloop()
 
