@@ -4,17 +4,27 @@ import time
 from PIL import Image, ImageTk
 from classes import *
 from time import monotonic as timer
-
+start_game = True # meant to be false at the start, but it didn't work so I changed it to true just for now.
 # graphics: create canvas and background
 
 root = Tk()
 root.title("Flappy Bird")
 canvas = Canvas(root, width=360, height=640)
 canvas.pack()
+
 image = Image.open('bg_5.png')
 photo_image = ImageTk.PhotoImage(image)
 game_background = canvas.create_image(180, 320, image = photo_image, anchor = 'c')
 # finishes background
+
+def start():#not working :(
+    global start_game
+    start_game = True
+    root.mainloop()
+
+start_button = Button(root, text="start game", command= lambda: start()) #not working :(
+start_button.pack()
+
 
 
 #classes
@@ -85,7 +95,7 @@ x2 = 290+70
 
 score = 0
 
-while bird.hit_bottom == False:
+while start_game == True and bird.hit_bottom == False:
      bird.y = bird.y + 0.2
      bird.fall()
      pipe1.move()
